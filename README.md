@@ -1,0 +1,1 @@
+# Synthient AI Plugins
