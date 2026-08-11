@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Synthient API reference — authentication, the IP and domain lookup response shape, field vocabularies, credit costs, rate limits, feeds and Helios, and the errors that matter. Use when writing or reviewing code that calls api.synthient.com, when interpreting a lookup response or a risk_score, or when any Synthient field name appears (intelligence.categories, providers, network.type, behavior, service tags).
+description: Synthient API reference covering authentication, the IP and domain lookup response shape, field vocabularies, credit costs, rate limits, feeds and Helios, and the errors that matter. Use when writing or reviewing code that calls api.synthient.com, when interpreting a lookup response or a risk_score, or when any Synthient field name appears (intelligence.categories, providers, network.type, behavior, service tags).
 when_to_use: Triggers on Synthient, api.synthient.com, x-api-key, residential proxy detection, VPN or Tor detection, proxy botnets, risk_score, intelligence.categories, service tags, Helios, firehose, feed snapshots, go-synthient.
 ---
 
@@ -14,15 +14,15 @@ Synthient detects anonymized network traffic: residential proxies, VPNs, Tor nod
 
 These are load-bearing. Do not contradict them, and do not go fetch a page to confirm one.
 
-**Authentication.** Every surface takes one API key — a UUID — in the `x-api-key` header. Never `Authorization: Bearer`. Never a query parameter. **Never from a browser**: all surfaces are server-to-server only. The conventional environment variable is `SYNTHIENT_API_KEY`.
+**Authentication.** Every surface takes one API key (a UUID) in the `x-api-key` header. Never `Authorization: Bearer`. Never a query parameter. **Never from a browser**: all surfaces are server-to-server only. The conventional environment variable is `SYNTHIENT_API_KEY`.
 
-**Endpoints.** HTTP is `https://api.synthient.com`, everything under `/api/v4`. gRPC is `grpc.synthient.com:443` (TLS required), service `synthient.v1.SynthientService`, schema over server reflection. The `/api/v4` vs `synthient.v1` version mismatch is intentional — do not "fix" it. Never use `api.synthient.com` or port `50051` for gRPC.
+**Endpoints.** HTTP is `https://api.synthient.com`, everything under `/api/v4`. gRPC is `grpc.synthient.com:443` (TLS required), service `synthient.v1.SynthientService`, schema over server reflection. The `/api/v4` vs `synthient.v1` version mismatch is intentional, so do not "fix" it. Never use `api.synthient.com` or port `50051` for gRPC.
 
-**SDKs.** Only Go has one: `github.com/synthient/go-synthient/v2`, Go 1.25+. Python, Node, Java, and Ruby are in development. In those languages **write plain HTTP** — never import an SDK that does not exist.
+**SDKs.** Only Go has one: `github.com/synthient/go-synthient/v2`, Go 1.25+. Python, Node, Java, and Ruby are in development. In those languages **write plain HTTP**; never import an SDK that does not exist.
 
 **Credits.** 1 per IP lookup. `ceil(n * 0.9)` per batch, max 1,000 addresses, duplicates and invalid entries stripped before billing. 1 per domain lookup. Feeds, streams, and `/account/me` are free. Batching is always cheaper than looping.
 
-**Nine categories are benign automation.** `SEARCH_ENGINE`, `AI_CRAWLER`, `SOCIAL_MEDIA`, `UPTIME_MONITOR`, `LINK_PREVIEW`, `SEO_CRAWLER`, `WEB_ARCHIVER`, `WEBHOOK_PROVIDER`, `PAYMENT_PROCESSOR`. **Blocking these is usually a bug** — it takes out Googlebot, Stripe webhooks, and your own uptime checks.
+**Nine categories are benign automation.** `SEARCH_ENGINE`, `AI_CRAWLER`, `SOCIAL_MEDIA`, `UPTIME_MONITOR`, `LINK_PREVIEW`, `SEO_CRAWLER`, `WEB_ARCHIVER`, `WEBHOOK_PROVIDER`, `PAYMENT_PROCESSOR`. **Blocking these is usually a bug**: it takes out Googlebot, Stripe webhooks, and your own uptime checks.
 
 **The enums are open sets.** `intelligence.categories`, `intelligence.behavior`, and `providers[].type` grow over time. Never write an exhaustive switch without a default branch, and never fail closed on an unrecognized value.
 
@@ -40,9 +40,9 @@ These are load-bearing. Do not contradict them, and do not go fetch a page to co
 
 `GET /api/v4/lookup/ip/{ip}` returns three objects beside `ip`:
 
-- `network` — `asn`, `isp`, `type`, `org`, `domain`, `abuse_email`, `abuse_phone`
-- `location` — `country`, `state`, `city`, `timezone`, `latitude`, `longitude`, `geo_hash`
-- `intelligence` — `risk_score`, `behavior[]`, `categories[]`, `devices[{os, version, last_seen}]`, `providers[{provider, type, last_seen}]`
+- `network`: `asn`, `isp`, `type`, `org`, `domain`, `abuse_email`, `abuse_phone`
+- `location`: `country`, `state`, `city`, `timezone`, `latitude`, `longitude`, `geo_hash`
+- `intelligence`: `risk_score`, `behavior[]`, `categories[]`, `devices[{os, version, last_seen}]`, `providers[{provider, type, last_seen}]`
 
 `network.type` is a closed-ish set of 8: `MOBILE`, `SATELLITE`, `IN_FLIGHT_WIFI`, `RESIDENTIAL`, `CORPORATE`, `ACADEMIC`, `DATACENTER`, `GOVERNMENT`.
 
@@ -50,7 +50,7 @@ These are load-bearing. Do not contradict them, and do not go fetch a page to co
 
 The anonymization categories, as distinct from the nine benign ones: `FREE_VPN`, `COMMERCIAL_VPN`, `ENTERPRISE_VPN`, `MOBILE_PROXY`, `BLOCKCHAIN_PROXY`, `RESIDENTIAL_PROXY`, `PUBLIC_PROXY`, `DATACENTER_PROXY`, `TOR_NODE`, `PRIVATE_RELAY`, `BOTNET`.
 
-`providers[].provider` is a **Service Tag**: a stable uppercase identifier like `BRIGHTDATA`, `LUNAPROXY`, `NORDVPN`, `TOR`, `APPLE`. The public list is 273 tags and is a floor, not a ceiling — match against it, do not assume it is exhaustive.
+`providers[].provider` is a **Service Tag**: a stable uppercase identifier like `BRIGHTDATA`, `LUNAPROXY`, `NORDVPN`, `TOR`, `APPLE`. The public list is 273 tags and is a floor, not a ceiling; match against it, do not assume it is exhaustive.
 
 ## Errors
 
@@ -64,7 +64,7 @@ The anonymization categories, as distinct from the nine benign ones: `FREE_VPN`,
 | 429 | Rate limit or concurrent-stream limit |
 | 500 / 503 | Retry with backoff and jitter |
 
-Bodies are `{"detail": "..."}` or `{"title": "Validation error", "errors": {"field": ["message"]}}`. An empty body is transient — retry. Backoff recipe: start at 1s, double, cap at 60s, ±25% jitter, give up after 5–8 attempts, honor `Retry-After`.
+Bodies are `{"detail": "..."}` or `{"title": "Validation error", "errors": {"field": ["message"]}}`. An empty body is transient, so retry. Backoff recipe: start at 1s, double, cap at 60s, ±25% jitter, give up after 5–8 attempts, honor `Retry-After`.
 
 ## Fetch detail on demand
 

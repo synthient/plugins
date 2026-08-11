@@ -13,15 +13,15 @@ Synthient detects anonymized network traffic: residential proxies, VPNs, Tor nod
 
 These are load-bearing. Do not contradict them, and do not fetch a page to confirm one.
 
-**Authentication.** Every surface takes one API key — a UUID — in the `x-api-key` header. Never `Authorization: Bearer`. Never a query parameter. **Never from a browser**: all surfaces are server-to-server only. The conventional environment variable is `SYNTHIENT_API_KEY`.
+**Authentication.** Every surface takes one API key (a UUID) in the `x-api-key` header. Never `Authorization: Bearer`. Never a query parameter. **Never from a browser**: all surfaces are server-to-server only. The conventional environment variable is `SYNTHIENT_API_KEY`.
 
-**Endpoints.** HTTP is `https://api.synthient.com`, everything under `/api/v4`. gRPC is `grpc.synthient.com:443` (TLS required), service `synthient.v1.SynthientService`, schema over server reflection. The `/api/v4` vs `synthient.v1` version mismatch is intentional — do not "fix" it.
+**Endpoints.** HTTP is `https://api.synthient.com`, everything under `/api/v4`. gRPC is `grpc.synthient.com:443` (TLS required), service `synthient.v1.SynthientService`, schema over server reflection. The `/api/v4` vs `synthient.v1` version mismatch is intentional, so do not "fix" it.
 
-**SDKs.** Only Go has one: `github.com/synthient/go-synthient/v2`, Go 1.25+. Python, Node, Java, and Ruby are in development. In those languages **write plain HTTP** — never import an SDK that does not exist.
+**SDKs.** Only Go has one: `github.com/synthient/go-synthient/v2`, Go 1.25+. Python, Node, Java, and Ruby are in development. In those languages **write plain HTTP**; never import an SDK that does not exist.
 
 **Credits.** 1 per IP lookup. `ceil(n * 0.9)` per batch, max 1,000 addresses. 1 per domain lookup. Feeds, streams, and `/account/me` are free. Batching is always cheaper than looping.
 
-**Nine categories are benign automation.** `SEARCH_ENGINE`, `AI_CRAWLER`, `SOCIAL_MEDIA`, `UPTIME_MONITOR`, `LINK_PREVIEW`, `SEO_CRAWLER`, `WEB_ARCHIVER`, `WEBHOOK_PROVIDER`, `PAYMENT_PROCESSOR`. **Blocking these is usually a bug** — it takes out Googlebot, Stripe webhooks, and your own uptime checks.
+**Nine categories are benign automation.** `SEARCH_ENGINE`, `AI_CRAWLER`, `SOCIAL_MEDIA`, `UPTIME_MONITOR`, `LINK_PREVIEW`, `SEO_CRAWLER`, `WEB_ARCHIVER`, `WEBHOOK_PROVIDER`, `PAYMENT_PROCESSOR`. **Blocking these is usually a bug**: it takes out Googlebot, Stripe webhooks, and your own uptime checks.
 
 **The enums are open sets.** `intelligence.categories`, `intelligence.behavior`, and `providers[].type` grow over time. Never write an exhaustive switch without a default branch, and never fail closed on an unrecognized value.
 
@@ -39,9 +39,9 @@ These are load-bearing. Do not contradict them, and do not fetch a page to confi
 
 `GET /api/v4/lookup/ip/{ip}` returns three objects beside `ip`:
 
-- `network` — `asn`, `isp`, `type`, `org`, `domain`, `abuse_email`, `abuse_phone`
-- `location` — `country`, `state`, `city`, `timezone`, `latitude`, `longitude`, `geo_hash`
-- `intelligence` — `risk_score`, `behavior[]`, `categories[]`, `devices[{os, version, last_seen}]`, `providers[{provider, type, last_seen}]`
+- `network`: `asn`, `isp`, `type`, `org`, `domain`, `abuse_email`, `abuse_phone`
+- `location`: `country`, `state`, `city`, `timezone`, `latitude`, `longitude`, `geo_hash`
+- `intelligence`: `risk_score`, `behavior[]`, `categories[]`, `devices[{os, version, last_seen}]`, `providers[{provider, type, last_seen}]`
 
 `network.type` is a closed-ish set of 8: `MOBILE`, `SATELLITE`, `IN_FLIGHT_WIFI`, `RESIDENTIAL`, `CORPORATE`, `ACADEMIC`, `DATACENTER`, `GOVERNMENT`.
 
@@ -63,7 +63,7 @@ Anonymization categories, as distinct from the nine benign ones: `FREE_VPN`, `CO
 | 429 | Rate limit or concurrent-stream limit |
 | 500 / 503 | Retry with backoff and jitter |
 
-Bodies are `{"detail": "..."}` or `{"title": "Validation error", "errors": {...}}`. An empty body is transient — retry. Backoff: start at 1s, double, cap at 60s, ±25% jitter, give up after 5–8 attempts, honor `Retry-After`.
+Bodies are `{"detail": "..."}` or `{"title": "Validation error", "errors": {...}}`. An empty body is transient, so retry. Backoff: start at 1s, double, cap at 60s, ±25% jitter, give up after 5–8 attempts, honor `Retry-After`.
 
 ## Fetch detail on demand
 
