@@ -1,6 +1,6 @@
 # Synthient AI Plugins
 
-Plugins that bring [Synthient](https://synthient.com) IP intelligence into AI coding agents — detecting residential proxies, VPNs, Tor nodes, and the proxy botnets behind them.
+Plugins that bring [Synthient](https://synthient.com) IP intelligence into AI coding agents, detecting residential proxies, VPNs, Tor nodes, and the proxy botnets behind them.
 
 ## Claude Code
 
@@ -20,7 +20,7 @@ codex plugin marketplace add synthient/plugins
 codex plugin add synthient@synthient
 ```
 
-Then start a new session — bundled skills and MCP servers are picked up at session start.
+Then start a new session. Bundled skills and MCP servers are picked up at session start.
 
 Bundles the same MCP server and the same six skills, invoked as `$synthient`, `$synthient-migrate`, and so on. See [`codex/synthient`](./codex/synthient).
 
