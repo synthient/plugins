@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "synthient": {
+      "command": "synthient",
+      "args": ["mcp"],
+      "env": {
+        "SYNTHIENT_API_KEY": "${user_config.api_key}"
+      }
+    }
+  }
+}

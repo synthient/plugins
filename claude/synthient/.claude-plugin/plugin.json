@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "synthient",
+  "displayName": "Synthient",
+  "version": "0.1.0",
+  "description": "Detect residential proxies, VPNs, Tor, and proxy botnets from your codebase. Bundles the Synthient MCP server and adds the judgment it lacks: how to read a lookup, how to integrate one, and how to migrate off Spur or IPQualityScore.",
+  "author": {
+    "name": "Synthient",
+    "email": "contact@synthient.com",
+    "url": "https://synthient.com"
+  },
+  "homepage": "https://docs.synthient.com",
+  "repository": "https://github.com/synthient/plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "synthient",
+    "proxy-detection",
+    "residential-proxy",
+    "vpn-detection",
+    "fraud-prevention",
+    "ip-intelligence",
+    "threat-intelligence",
+    "anti-abuse"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Synthient API key",
+      "description": "Optional. Leave blank to use the CLI's own credentials: the SYNTHIENT_API_KEY environment variable, a .env file, or the OS keychain via `synthient auth`. Get a key from the dashboard at https://synthient.com.",
+      "sensitive": true
+    }
+  }
+}
