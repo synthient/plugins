@@ -9,10 +9,11 @@ This plugin bundles the [Synthient MCP server](https://docs.synthient.com/cli#mc
 Add this repository as a marketplace, then install the plugin:
 
 ```bash
-codex plugin marketplace add /path/to/plugins
+codex plugin marketplace add synthient/plugins
+codex plugin add synthient@synthient
 ```
 
-Then open `/plugins` in Codex and install **Synthient** from the Synthient marketplace. Start a new session afterwards — bundled skills and MCP servers are picked up at session start.
+You can also install **Synthient** from the `/plugins` browser in Codex. Either way, start a new session afterwards — bundled skills and MCP servers are picked up at session start.
 
 You need the CLI on your `PATH`, since the MCP server ships inside it:
 

@@ -15,11 +15,14 @@ Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
 ## Codex
 
-```bash
-codex plugin marketplace add /path/to/plugins
+```
+codex plugin marketplace add synthient/plugins
+codex plugin add synthient@synthient
 ```
 
-Then install **Synthient** from the `/plugins` browser and start a new session. Same six skills, invoked as `$synthient`, `$synthient-migrate`, and so on. See [`codex/synthient`](./codex/synthient).
+Then start a new session — bundled skills and MCP servers are picked up at session start.
+
+Bundles the same MCP server and the same six skills, invoked as `$synthient`, `$synthient-migrate`, and so on. See [`codex/synthient`](./codex/synthient).
 
 Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
