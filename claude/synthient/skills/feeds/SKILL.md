@@ -32,8 +32,10 @@ Seven identifiers, shared by exports and live streams:
 | `torrents` | `torrent` | yes |
 | `honeypot_http` | `helios_http`, `http` | yes |
 | `honeypot_https` | `helios_https`, `https`, `tls` | yes |
-| `honeypot_dns` | `helios_dns`, `dns` | **snapshots only** |
-| `honeypot_adb` | `helios_adb`, `adb` | **snapshots only** |
+| `honeypot_dns` | `helios_dns`, `dns` | **not via CLI or MCP** |
+| `honeypot_adb` | `helios_adb`, `adb` | **not via CLI or MCP** |
+
+`honeypot_dns` and `honeypot_adb` have `_STREAM` scopes and the API serves them, but the Go SDK's `StreamHeliosDNS` and `StreamHeliosADB` are commented out — so `synthient stream` and `sample_stream` both reject them with "real-time stream not supported". Use snapshots for those two, or call the stream endpoint directly.
 
 Each is gated by its own scope — `PROXY_FEEDS`, `ANONYMIZERS_FEED`, `HONEYPOT_HTTP_STREAM`, and so on, with `PROXY_FIREHOSE` for the proxy stream. Check with `synthient scopes --format json`. Scopes are granted by Synthient, not self-served.
 
