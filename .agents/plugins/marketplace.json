@@ -1,0 +1,20 @@
+{
+  "name": "synthient",
+  "interface": {
+    "displayName": "Synthient"
+  },
+  "plugins": [
+    {
+      "name": "synthient",
+      "source": {
+        "source": "local",
+        "path": "./codex/synthient"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

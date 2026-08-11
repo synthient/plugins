@@ -1,0 +1,5 @@
+interface:
+  display_name: "Integrate Synthient"
+  short_description: "Add proxy and VPN detection to an app"
+  default_prompt: "Use $synthient-integrate to wire Synthient proxy detection into this codebase."
+  brand_color: "#5B4BE8"

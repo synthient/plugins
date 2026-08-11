@@ -1,0 +1,5 @@
+interface:
+  display_name: "Migrate to Synthient"
+  short_description: "Move off Spur, IPQS, or another vendor"
+  default_prompt: "Use $synthient-migrate to audit and migrate an IP intelligence integration onto Synthient."
+  brand_color: "#5B4BE8"

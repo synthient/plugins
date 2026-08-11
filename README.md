@@ -15,15 +15,24 @@ Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
 ## Codex
 
-Not yet built.
+```bash
+codex plugin marketplace add /path/to/plugins
+```
+
+Then install **Synthient** from the `/plugins` browser and start a new session. Same six skills, invoked as `$synthient`, `$synthient-migrate`, and so on. See [`codex/synthient`](./codex/synthient).
+
+Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
 ## Layout
 
 ```
-.claude-plugin/marketplace.json   the "synthient" marketplace
-claude/synthient/                 the Claude Code plugin
-codex/                            reserved
+.claude-plugin/marketplace.json     the Claude Code marketplace
+.agents/plugins/marketplace.json    the Codex marketplace
+claude/synthient/                   the Claude Code plugin
+codex/synthient/                    the Codex plugin
 ```
+
+Both plugins carry the same six skills and bundle the same MCP server. They differ only where the two hosts do: Claude Code namespaces skills as `/synthient:<name>` and can prompt for the API key at enable time via `userConfig`, while Codex names skills `synthient-<name>` and relies on the CLI's own credential chain.
 
 ## Links
 

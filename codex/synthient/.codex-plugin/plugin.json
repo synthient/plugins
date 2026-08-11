@@ -1,0 +1,42 @@
+{
+  "name": "synthient",
+  "version": "0.1.0",
+  "description": "Detect residential proxies, VPNs, Tor, and proxy botnets from your codebase, and migrate off Spur or IPQualityScore.",
+  "author": {
+    "name": "Synthient",
+    "email": "contact@synthient.com",
+    "url": "https://synthient.com"
+  },
+  "homepage": "https://docs.synthient.com",
+  "repository": "https://github.com/synthient/plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "synthient",
+    "proxy-detection",
+    "residential-proxy",
+    "vpn-detection",
+    "fraud-prevention",
+    "ip-intelligence",
+    "threat-intelligence",
+    "anti-abuse"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Synthient",
+    "shortDescription": "Proxy, VPN, and Tor detection",
+    "longDescription": "Look up IP and domain intelligence, wire Synthient into an application, investigate addresses, work with bulk proxy feeds, and migrate an existing integration off Spur or IPQualityScore.",
+    "developerName": "Synthient",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://synthient.com",
+    "privacyPolicyURL": "https://synthient.com/privacy",
+    "termsOfServiceURL": "https://synthient.com/terms",
+    "defaultPrompt": [
+      "Check whether this IP is a residential proxy or VPN",
+      "Add Synthient proxy detection to our signup flow",
+      "Migrate our Spur integration to Synthient"
+    ],
+    "brandColor": "#5B4BE8"
+  }
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Triage an Address"
+  short_description: "Investigate an IP or domain"
+  default_prompt: "Use $synthient-triage to investigate an IP address or domain and get a reasoned verdict."
+  brand_color: "#5B4BE8"

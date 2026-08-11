@@ -1,0 +1,5 @@
+interface:
+  display_name: "Synthient API"
+  short_description: "API reference and field vocabularies"
+  default_prompt: "Use $synthient for the Synthient API reference, response shape, and field vocabularies."
+  brand_color: "#5B4BE8"

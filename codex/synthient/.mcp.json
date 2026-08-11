@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "synthient": {
+      "command": "synthient",
+      "args": ["mcp"],
+      "env_vars": ["SYNTHIENT_API_KEY"],
+      "startup_timeout_sec": 30
+    }
+  }
+}

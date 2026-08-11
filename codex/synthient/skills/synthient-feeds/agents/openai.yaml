@@ -1,0 +1,5 @@
+interface:
+  display_name: "Synthient Feeds"
+  short_description: "Bulk snapshots and live streams"
+  default_prompt: "Use $synthient-feeds to download Parquet snapshots or capture live proxy streams."
+  brand_color: "#5B4BE8"

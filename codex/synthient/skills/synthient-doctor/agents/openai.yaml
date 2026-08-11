@@ -1,0 +1,5 @@
+interface:
+  display_name: "Synthient Doctor"
+  short_description: "Diagnose credentials, scopes, and credits"
+  default_prompt: "Use $synthient-doctor to diagnose Synthient credentials, scopes, credits, and MCP connectivity."
+  brand_color: "#5B4BE8"
