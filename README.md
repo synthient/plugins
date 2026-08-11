@@ -11,7 +11,8 @@ Plugins that bring [Synthient](https://synthient.com) IP intelligence into AI co
 
 Bundles the Synthient MCP server and adds six skills: API reference, codebase integration, migration off another vendor, address triage, bulk feeds, and setup diagnosis. See [`claude/synthient`](./claude/synthient).
 
-Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
+> [!NOTE]
+> Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
 ## Codex
 
@@ -24,7 +25,8 @@ Then start a new session. Bundled skills and MCP servers are picked up at sessio
 
 Bundles the same MCP server and the same six skills, invoked as `$synthient`, `$synthient-migrate`, and so on. See [`codex/synthient`](./codex/synthient).
 
-Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
+> [!NOTE]
+> Requires the CLI on your `PATH`: `brew install synthient/tap/synthient`.
 
 ## Layout
 
